@@ -5,13 +5,14 @@ import Info from "@/components/info";
 import ProductList from "@/components/product-list";
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     productId: string;
-  };
+  }>
 }
 
 const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
-  const product = await getProduct(params.productId);
+  const promisedParam = await params
+  const product = await getProduct(promisedParam.productId);
 
   const suggestedProducts = await getProducts({
     categoryId: product?.category?.id,

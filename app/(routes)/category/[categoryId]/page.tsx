@@ -10,9 +10,9 @@ import { FilterIcon } from "lucide-react";
 
 export const revalidate = 0;
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     categoryId: string;
-  };
+  }>;
   searchParams: {
     colorId: string;
     sizeId: string;
@@ -23,15 +23,16 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
   params,
   searchParams,
 }) => {
+  const promisedParam = await params
   const products = await getProducts({
-    categoryId: params.categoryId,
+    categoryId: promisedParam.categoryId,
     colorId: searchParams.colorId,
     sizeId: searchParams.sizeId,
   });
 
   const sizes = await getSizes();
   const colors = await getColors();
-  const category = await getCategory(params.categoryId);
+  const category = await getCategory(promisedParam.categoryId);
   return (
     <div className="dark:text-background px-6">
       <Billboard data={category.billboard} />
