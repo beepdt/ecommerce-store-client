@@ -13,10 +13,10 @@ interface CategoryPageProps {
   params: Promise<{
     categoryId: string;
   }>;
-  searchParams: {
+  searchParams: Promise<{
     colorId: string;
     sizeId: string;
-  };
+  }>;
 }
 
 const CategoryPage: React.FC<CategoryPageProps> = async ({
@@ -24,10 +24,11 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
   searchParams,
 }) => {
   const promisedParam = await params
+  const promisedSearchParams = await searchParams
   const products = await getProducts({
     categoryId: promisedParam.categoryId,
-    colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId,
+    colorId: promisedSearchParams.colorId,
+    sizeId: promisedSearchParams.sizeId,
   });
 
   const sizes = await getSizes();
