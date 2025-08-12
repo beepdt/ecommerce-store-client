@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #fffffc;
+  --foreground: #080808;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+
+
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+.dark body {
+  background: #080808;
+}
+
+@font-face {
+  font-family: "NeueMontrealBold";
+  src: url("/fonts/NeueMontreal-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "NeueMontrealRegular";
+  src: url("/fonts/NeueMontreal-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "UnageoBold";
+  src: url("/fonts/Unageo-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "UnageoRegular";
+  src: url("/fonts/Unageo-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Integral";
+  src: url("/fonts/Fontspring-DEMO-integralcf-bold.otf") format("opentype");
+}
+
+.font-integral{
+  font-family: 'Integral';
+}
+
+.font-unageo-bold{
+  font-family: 'UnageoBold';
+}
+
+.font-unageo-reg{
+  font-family: 'UnageoRegular';
+}
+
+p{
+  font-family: 'NeueMontrealRegular';
+}
+
+h1 {
+  font-family: 'NeueMontrealBold';
+}
+
+
+.scroll-hide ::-webkit-scrollbar {
+  display: none;
+}
